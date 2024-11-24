@@ -1,0 +1,52 @@
+@import "../../../../variables.scss";
+@import "../../../../mixins.scss";
+
+.header_section_top {
+  width: 100%;
+  float: left;
+  background-color: #2b2a29;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 3% 100%);
+  height: auto;
+  padding: 10px 0;
+
+  .custom_menu {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+
+      li {
+        float: left;
+        font-size: 16px;
+        color: $light-gray;
+        padding: 10px 20px 0 0px;
+        margin: 0 0 0 8px;
+        list-style: none;
+        a {
+          text-decoration: none;
+          color: $light-gray;
+
+          &:hover {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo_section {
+  width: 100%;
+  float: left;
+
+  .logo {
+    width: 100%;
+    float: left;
+    text-align: center;
+    padding: 30px 0;
+  }
+}

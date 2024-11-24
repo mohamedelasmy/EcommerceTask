@@ -1,0 +1,171 @@
+// Footer Section
+@import "../../../../variables.scss";
+@import "../../../../mixins.scss";
+
+.footer_section {
+  @include full-width;
+  background-color: $dark-gray;
+  height: auto;
+
+  .footer_logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  .input_bt {
+    width: 60%;
+    @include center-text;
+    display: flex;
+    border-bottom: 1px solid $white !important;
+  }
+
+  .mail_bt {
+    width: 100%;
+    float: left;
+    font: {
+      size: 18px;
+    }
+    color: $white;
+    background-color: transparent;
+    padding: 5px 0;
+    height: 60px;
+    border: 0;
+
+    &::placeholder {
+      color: $white;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  .subscribe_bt {
+    width: 30%;
+    float: right;
+    font-size: 16px;
+    color: $primary-color;
+    background-color: transparent;
+    padding: 20px 0 5px 0;
+    border: {
+      radius: 30px;
+      width: 0;
+    }
+    text: {
+      transform: uppercase;
+      align: right;
+    }
+
+    a {
+      color: $primary-color;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .footer_menu {
+    @include full-width;
+    @include center-text;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+    }
+
+    li {
+      float: left;
+      font-size: 16px;
+      color: $light-gray;
+      padding: 20px 30px 0 0px;
+      list-style: none;
+
+      a {
+        color: $light-gray;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// Copyright Section
+.copyright_section {
+  @include full-width;
+  background-color: $dark-gray;
+  height: auto;
+
+  .copyright_text {
+    @include full-width;
+    color: $white;
+    text-align: center;
+    font-size: 16px;
+    margin: 20px 0;
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Utility Classes
+.margin_top90 {
+  margin-top: 90px;
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+  .footer_section {
+    .input_bt {
+      width: 80%;
+    }
+
+    .footer_menu li {
+      padding: 15px 8px 0 8px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .footer_section {
+    .input_bt {
+      width: 90%;
+      flex-direction: column;
+
+      .subscribe_bt {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+      }
+    }
+
+    .footer_menu ul {
+      display: flex;
+      flex-direction: column;
+
+      li {
+        float: none;
+        padding: 10px 0;
+      }
+    }
+
+    .location_main {
+      padding: 20px;
+    }
+  }
+}
+

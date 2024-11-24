@@ -1,0 +1,149 @@
+<!-- product-order.component.html -->
+<div class="product-order">
+  <h1 class="title">Product List Order</h1>
+
+  <!-- Search and Filter -->
+  <div class="filters">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search products..."
+        class="search-input"
+      >
+    </div>
+
+    <div class="category-filter">
+      <select [(ngModel)]="selectedCategory">
+        <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <div class="product-list">
+    <div class="product-category" *ngFor="let category of categories.slice(1)">
+      <h2 class="category-title">{{category}}</h2>
+
+      <div class="product-items">
+        <div class="product-item" *ngFor="let product of getFilteredProducts()">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name">
+          </div>
+
+          <div class="product-details">
+            <h3>{{product.name}}</h3>
+            <p class="price">${{product.price.toFixed(2)}}</p>
+
+            <div class="product-options">
+              <select *ngIf="product.sizes?.length"
+                      [(ngModel)]="orderItems[product.id]?.size">
+                <option *ngFor="let size of product.sizes" [value]="size">
+                  {{size}}
+                </option>
+              </select>
+
+              <select *ngIf="product.colors?.length"
+                      [(ngModel)]="orderItems[product.id]?.color">
+                <option *ngFor="let color of product.colors" [value]="color">
+                  {{color}}
+                </option>
+              </select>
+
+              <input type="number"
+                     min="0"
+                     [(ngModel)]="orderItems[product.id]?.quantity"
+                     (change)="updateQuantity(product, $event)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary -->
+  <div class="order-summary">
+    <div class="subtotal">
+      <span>Subtotal:</span>
+      <span>${{calculateTotal().toFixed(2)}}</span>
+    </div>
+    <div class="shipping">
+      <span>Shipping:</span>
+      <span>$0.00</span>
+    </div>
+    <div class="total">
+      <span>Total:</span>
+      <span>${{calculateTotal().toFixed(2)}}</span>
+    </div>
+  </div>
+
+  <!-- Order Form -->
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
+    <div class="form-section">
+      <h3>Contact Person</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input formControlName="firstName" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <input formControlName="lastName" placeholder="Last Name">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Company Information</h3>
+
+      <div class="form-group">
+        <input formControlName="companyName" placeholder="Company Name">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input formControlName="companyPhone" placeholder="Company Phone">
+        </div>
+        <div class="form-group">
+          <input formControlName="companyEmail" placeholder="Company Email">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section" formGroupName="address">
+      <h3>Delivery Address</h3>
+
+      <div class="form-group">
+        <input formControlName="street1" placeholder="Street Address">
+      </div>
+
+      <div class="form-group">
+        <input formControlName="street2" placeholder="Street Address Line 2">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input formControlName="city" placeholder="City">
+        </div>
+        <div class="form-group">
+          <input formControlName="state" placeholder="State/Province">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input formControlName="postalCode" placeholder="Postal/Zip Code">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Notes/Instructions</h3>
+      <textarea formControlName="notes" rows="4"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-print">Print Form</button>
+      <button type="submit" class="btn-submit" [disabled]="!orderForm.valid || !orderItems.length">
+        Submit Order
+      </button>
+    </div>
+  </form>
+</div>
