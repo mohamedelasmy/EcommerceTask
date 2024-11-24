@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-sm-12 {
+  width: 100%;
+  padding: 0 15px;
+}
