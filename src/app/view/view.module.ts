@@ -1,30 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ViewRoutingModule } from './view-routing.module';
-import { SharedModule } from '../shared/shared.module';
-import { ProductsComponent } from './Pages/products/products.component';
-import { OrdersComponent } from './Pages/orders/orders.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ProductsResolver } from '../core/reslovers/products.resolver';
-import { ApiService } from '../core/services/api.service';
+import { ProductsModule } from './Pages/products/products.module';
+import { OrdersModule } from './Pages/orders/orders.module';
 
 
 @NgModule({
   declarations: [
-    ProductsComponent,
-    OrdersComponent
   ],
   imports: [
-    CommonModule,
     ViewRoutingModule,
-    SharedModule,
-    HttpClientModule
-    // ListLeadModule
+    ProductsModule,
+    OrdersModule
   ],
-  providers: [
-    ProductsResolver,
-    ApiService
-  ]
+  providers: []
 })
 export class ViewModule { }

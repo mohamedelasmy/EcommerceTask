@@ -4,24 +4,26 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { SidenavComponent } from './Components/sidenav/sidenav.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { ViewModule } from '../view/view.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  // Declaring the components that belong to this module.
   declarations: [
     SidenavComponent,
     HeaderComponent,
-    NavbarComponent, // Declaring NavbarComponent
-    FooterComponent   // Declaring FooterComponent
+    NavbarComponent,
+    FooterComponent
   ],
-  // Specifying the modules that this module depends on.
   imports: [
-    CommonModule // Importing CommonModule to use common directives
+    CommonModule,
+    MatBadgeModule,
+    RouterModule,
+    ViewModule
   ],
-  // Specifying the components that can be used in other modules.
   exports: [
-    NavbarComponent, // Exporting NavbarComponent for use in other modules
-    FooterComponent   // Exporting FooterComponent for use in other modules
+    NavbarComponent,
+    FooterComponent
   ]
 })
-// Exporting the SharedModule class so it can be imported in other parts of the application.
 export class SharedModule { }

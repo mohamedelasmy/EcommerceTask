@@ -7,40 +7,46 @@
 
   .containt_main {
     display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 15px 0;
-  }
-
-  .fas {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-  }
-
-  .fa-shopping-cart {
-    // Custom styling for shopping cart icon
-    &:before {
-      content: "\f07a";
-    }
+    // align-items: center;
+    // width: 100%;
+    // padding: 15px 0;
   }
 
   // Search Bar
   .main {
-    order: 3;
     flex: 1;
-    margin: 0 15px;
+    margin: 0px 30px;
+    padding-bottom: 50px;
+    display: inline-block;
+    order: 2;
 
     .input-group {
-      .form-control {
-        border-radius: 5px 0 0 5px;
-        border: 1px solid #ddd;
-        padding: 8px 15px;
+      position: relative;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      width: 100%;
 
+      .form-control {
+        display: block;
+        width: auto;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+        &:not(:last-child) {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
         &:focus {
           box-shadow: none;
           border-color: $primary-color;
@@ -48,19 +54,36 @@
       }
 
       .input-group-append {
+        display: flex;
         .btn-secondary {
           background-color: $primary-color;
           border-color: $primary-color;
-          border-radius: 0 5px 5px 0;
-          padding: 8px 15px;
 
-          &:hover {
-            background-color: darken($primary-color, 10%);
-            border-color: darken($primary-color, 10%);
+          // &:hover {
+          //   background-color: darken($primary-color, 10%);
+          //   border-color: darken($primary-color, 10%);
+          // }
+        }
+        .btn {
+          display: inline-block;
+          font-weight: 400;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          border: 1px solid transparent;
+          padding: 0.375rem 0.75rem;
+          font-size: 1rem;
+          line-height: 1.5;
+          border-radius: 0.25rem;
+          svg {
+            width: 20px;
           }
-
-          .fa-search {
-            color: $white;
+          :not(:disabled):not(.disabled) {
+            cursor: pointer;
           }
         }
       }
@@ -69,32 +92,40 @@
 
   // Header Box (Language and Login)
   .header_box {
-    order: 4;
+    order: 2;
     display: flex;
-    align-items: center;
+    padding-top: 8px;
 
     .login_menu {
+      display: flex;
+      text-align: right;
+      float: right;
       ul {
-        display: flex;
         margin: 0;
         padding: 0;
         list-style: none;
 
         li {
-          margin-left: 15px;
-
+          float: left;
+          font-size: 16px;
+          color: #ffffff;
+          text-transform: uppercase;
+          padding-left: 10px;
+          padding-top: 4px;
+          list-style: none;
           a {
             display: flex;
             align-items: center;
-            color: $black;
-            text-decoration: none;
+            color: #ffffff;
+            text-decoration: none !important;
+            outline: none !important;
+
+            svg {
+              width: 20px;
+            }
 
             &:hover {
               color: $primary-color;
-            }
-
-            i {
-              margin-right: 5px;
             }
 
             .padding_10 {
@@ -142,4 +173,3 @@
     }
   }
 }
-

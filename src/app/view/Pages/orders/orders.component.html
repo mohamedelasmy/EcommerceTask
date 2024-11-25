@@ -1,1 +1,52 @@
-<p>orders works!</p>
+<!-- orders.component.html -->
+<div class="orders-table-container">
+  <div class="container">
+    <table class="orders-table">
+      <thead class="table-header">
+        <tr>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Date</th>
+          <th>Payment</th>
+          <th>View Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of getCurrentPageData(); trackBy: trackByOrder">
+          <td class="order-id" [innerHTML]="order.OrderId"></td>
+          <td class="customer-name">
+            <div class="customer-info">
+              {{ order.user?.Name }}
+            </div>
+          </td>
+          <td [innerHTML]="order.OrderDate | date : 'longDate'"></td>
+          <td>
+            <span
+              class="payment-status"
+              [ngClass]="order.PaymentType"
+              [innerHTML]="order.PaymentType"
+            >
+            </span>
+          </td>
+          <td class="actions">
+            <button class="action-btn" (click)="showOrderDetails(order)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"
+                />
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator
+      [length]="orders.length"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="onPageChange($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>

@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../src//variables.scss";
+@import "../src/mixins.scss";
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -14,4 +18,87 @@
 .col-sm-12 {
   width: 100%;
   padding: 0 15px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+div.mat-mdc-select-panel {
+  background-color: $white !important;
+  color: $black !important;
+}
+.mat-mdc-option {
+  color: $black !important;
+}
+.mat-mdc-paginator-icon {
+  fill: $black !important;
+}
+
+.mat-mdc-dialog-content {
+  max-height: 100vh !important;
+}
+
+.dialog-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+// Override Material styles globally
+.mat-mdc-dialog-surface {
+  background-color: $white !important;
+  color: black !important;
+}
+
+// Style Material form fields globally
+.mat-mdc-form-field {
+  &.mat-form-field-appearance-outline {
+    .mat-mdc-text-field-wrapper {
+      background-color: $white;
+    }
+
+    .mat-form-field-outline {
+      color: rgba(0, 0, 0, 0.12);
+    }
+
+    .mat-form-field-label {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  // styles.scss
+.product-order-dialog {
+  .mat-mdc-dialog-container {
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .mat-mdc-dialog-surface {
+    border-radius: 12px;
+  }
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 }

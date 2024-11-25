@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs'; // Add missing operators
 import { Product } from '../Interfaces/product';
 import { Order } from '../Interfaces/order';
@@ -10,6 +10,11 @@ import { User } from '../Interfaces/user';
 })
 export class ApiService {
   private apiUrl = 'assets/data';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -22,9 +27,15 @@ export class ApiService {
     );
   }
 
-  // Missing type annotation for return type
-  getProducts(): Observable<Product[]> { // Add return type
-    // Remove console.log or use proper logging service
+  createOrder(order: Order): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/products`,
+      order,
+      this.httpOptions
+    );
+  }
+
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/products.json`).pipe(
       catchError(error => {
         console.error('Error fetching products:', error);

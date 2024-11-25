@@ -1,0 +1,194 @@
+// orders.component.scss
+@import "../../../../variables.scss";
+@import "../../../../mixins.scss";
+
+.orders-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: $white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 20px 0;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+
+    &:first-child {
+      padding-left: 24px;
+    }
+
+    &:last-child {
+      padding-right: 24px;
+    }
+  }
+
+  th {
+    font-weight: 600;
+    color: #666;
+    background-color: #f9fafb;
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: #f9fafb;
+      }
+    }
+  }
+
+  .customer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #eee;
+    }
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &.pending {
+      background-color: #fff7ed;
+      color: #c2410c;
+    }
+
+    &.active {
+      background-color: #f0fdf4;
+      color: #15803d;
+    }
+
+    &.failed {
+      background-color: #fef2f2;
+      color: #b91c1c;
+    }
+  }
+
+  .payment-status {
+    &.fulfilled {
+      color: #15803d;
+    }
+
+    &.failed {
+      color: #b91c1c;
+    }
+  }
+
+  .actions {
+    @include flex-center;
+
+    .action-btn {
+      padding: 6px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 4px;
+
+      svg {
+        width: 20px;
+      }
+
+      &:hover {
+        background-color: #f3f4f6;
+      }
+
+      i {
+        color: #666;
+      }
+    }
+  }
+
+  // Checkbox styles
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    appearance: none;
+    cursor: pointer;
+
+    &:checked {
+      background-color: #2563eb;
+      border-color: #2563eb;
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    }
+  }
+}
+
+::ng-deep .mat-mdc-paginator {
+  background-color: $white;
+  color: $black;
+}
+
+// For specific elements within paginator
+::ng-deep .mat-mdc-paginator-container {
+  background-color: $white;
+  color: $black;
+}
+
+// For dropdown and icons
+::ng-deep .mat-mdc-paginator-icon {
+  fill: $black;
+}
+
+::ng-deep .mat-mdc-paginator-range-label,
+::ng-deep .mat-mdc-select-value {
+  color: $black;
+}
+
+// Responsive styles
+@media (max-width: 1024px) {
+  .orders-table {
+    th,
+    td {
+      &:nth-child(6),
+      &:nth-child(7) {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-table {
+    th,
+    td {
+      &:nth-child(4),
+      &:nth-child(8) {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .orders-table {
+    th,
+    td {
+      font-size: 12px;
+      padding: 12px;
+    }
+
+    .customer-info {
+      .avatar {
+        display: none;
+      }
+    }
+  }
+}

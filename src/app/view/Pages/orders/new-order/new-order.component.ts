@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Order } from 'src/app/core/Interfaces/order';
 import { Product } from 'src/app/core/Interfaces/product';
+import { ViewDetailsComponent } from '../view-details/view-details.component';
 
 @Component({
   selector: 'app-new-order',
+  standalone: false,
   templateUrl: './new-order.component.html',
-  styleUrls: ['./new-order.component.scss']
+  styleUrl: './new-order.component.scss'
 })
 export class NewOrderComponent implements OnInit  {
-// product-order.component.ts
-
-
   selectedCategory = 'All';
   searchTerm = '';
   orderItems: Order[] = [];
   orderForm!: FormGroup;
+  products : Product[] = []
+  totalPrice: number = 0;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<NewOrderComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {}
 
   ngOnInit() {
     this.orderForm = this.fb.group({
@@ -37,12 +43,6 @@ export class NewOrderComponent implements OnInit  {
     });
   }
 
-  getFilteredProducts() {
-    // return this.products
-    //   .filter(p => this.selectedCategory === 'All' || p.category === this.selectedCategory)
-    //   .filter(p => p.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
-  }
-
   updateQuantity(product: Product, event: Event) {
     // const item = this.orderItems.find(i => i.product.id === product.id);
     // if (item) {
@@ -52,8 +52,14 @@ export class NewOrderComponent implements OnInit  {
     // }
   }
 
-  calculateTotal() {
-    // return this.orderItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+  calculateSubtotal() {
+    // if (!this.data?.order?.newProductsList?.length) return 0;
+    // return this.data.order.newProductsList.reduce((sum: any, item: any) => {
+    //   const itemTotal = item.product.ProductPrice * item.orderedQuantity;
+    //   this.totalPrice = sum + itemTotal
+    //   console.log('totalPrice', this.totalPrice)
+    //   return this.totalPrice;
+    // }, 0);
   }
 
   onSubmit() {
@@ -61,10 +67,14 @@ export class NewOrderComponent implements OnInit  {
       const orderData = {
         items: this.orderItems,
         customerInfo: this.orderForm.value,
-        total: this.calculateTotal()
+        // total: this.calculateTotal()
       };
       console.log('Order submitted:', orderData);
       // Implement your submit logic here
     }
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }
